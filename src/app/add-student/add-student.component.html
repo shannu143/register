@@ -1,0 +1,109 @@
+<div style="background-color: #e9ecef;">
+<div class="panel-heading">
+    <h1  style="text-align: center">Create Student</h1>
+</div>
+<div class="row container-fluid">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" >
+    <div [hidden]="submitted" style="width: 400px;">
+      <form [formGroup]="studentsaveform" #savestudent (ngSubmit)="saveStudent(saveStudent)">
+          <div class="form-group">
+              <label for="name">Student Name</label>
+              <input type="text" class="form-control"  formControlName="name" data-toggle="tooltip" 
+                 data-placement="right" title="Enter Student Name" >
+              <div class="alert alert-danger" *ngIf = "(StudentName.touched) && (StudentName.invalid)" 
+                style="margin-top: 5px;">
+                  <span *ngIf="StudentName.errors.required">Student Name is Required</span>
+                    <span *ngIf = "StudentName.errors.minlength"> 
+                        MinLength Error 
+                    </span>                   
+                </div>
+          </div>
+  
+          <div class="form-group">
+              <label for="name">Student Email</label>
+              <input type="text" class="form-control" formControlName="email" 
+                data-toggle="tooltip" data-placement="right" title="Enter Student Email">
+                <div class="alert alert-danger" *ngIf = "(StudentEmail.touched) && (StudentEmail.invalid)" 
+                style="margin-top: 5px;">
+                  <span *ngIf="StudentEmail.errors.required">Student Email is Required</span>
+                    <span *ngIf = "StudentEmail.errors.email"> 
+                        Invalid Email Format 
+                    </span>                   
+                </div>
+          </div>
+  
+          <div class="form-group">
+              <label for="branch">Student Branch</label>
+                <select class="form-control" formControlName="branch" data-toggle="tooltip" 
+                      data-placement="right" title="Select Student Branch">
+                    <option value="null">--Select Branch--</option>
+                  <option value="B-Tech">B-Tech</option>
+                  <option value="BCA">BCA</option>
+                  <option value="MCA">MCA</option>
+                  <option value="M-Tech">M-Tech</option>
+                </select>
+          </div>
+          <div class="form-group">
+            <label for="course">Select Course</label>
+              <select class="form-control" formControlName="course_id" data-toggle="tooltip" 
+                    data-placement="right" title="Select Course" (change)="coursechng()">
+                  <option value="null">--Select Course--</option>
+                <option value=1>JAVA</option>
+                <option value=2>NODEJS</option>
+                <option value=3>SPRING</option>
+                <option value=4>ANGULAR</option>
+                <option value=5>HIBERNATE</option>
+              </select>
+        </div>
+        <div class="form-group">
+          <label for="course">Select Teacher</label>
+          <select class="form-control" formControlName="teacher_id" data-toggle="tooltip" 
+                    data-placement="right" title="Select Teacher" >
+                    <option value="null">--Select Teacher--</option>
+                    <option *ngFor="let option of options" [value]="option.teacher_id">{{option.lastName}} {{option.firstName}}</option>
+          </select>
+        </div>
+
+           <div formGroupName="address">
+              <div class="form-group">
+                <label for="area">Area</label>
+                <input type="text" class="form-control" formControlName="area" 
+                  data-toggle="tooltip" data-placement="right" title="Enter area">
+              </div>
+              <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" formControlName="city" 
+                    data-toggle="tooltip" data-placement="right" title="Enter city">
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" formControlName="state" 
+                      data-toggle="tooltip" data-placement="right" title="Enter state">
+                  </div>
+                  <div class="form-group">
+                      <label for="pincode">Pincode</label>
+                      <input type="text" class="form-control" formControlName="pincode" 
+                        data-toggle="tooltip" data-placement="right" title="Enter pincode">
+                    </div>
+           </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+  </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+  
+</div>
+<!-- <div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+      <div [hidden]="!submitted">
+         <h4>Student Added SuccessFully!</h4>
+         <button (click)="addStudentForm()" class='btn btn-primary'>Add More Student</button>
+      </div>      
+  </div>
+  <div class="col-sm-4"></div>
+</div> -->
+
+
